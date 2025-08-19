@@ -34,14 +34,15 @@ def main():
         numGuesses = 1
         while numGuesses <= MAX_GUESSES:
             guess = ''
-            #Keep looking until they enter a valid guess:
-            while len(guess) !=NUM_DIGITS or not guess.isdecimal():
+            # Keep looking until they enter a valid guess:
+            while len(guess) != NUM_DIGITS or not guess.isdecimal():
                 print('Guess #{}: '.format(numGuesses))
                 guess = input('>')
-            
+
             clues = getClues(guess, secretNum)
             print(clues)
             numGuesses += 1
+
 
 def getSecretNum():
     """Returns a string made up of NUM_DIGITS unique random digits."""
@@ -53,19 +54,27 @@ def getSecretNum():
         secretNum += str(numbers[i])
         return secretNum
 
+
 def getClues(guess, secretNum):
     """Returns a string with the pico, fermi, bagels clues for a guess
     and secret number pair"""
     if guess == secretNum:
         return 'You got it!'
-    
-    clues=[]
+
+    clues = []
 
     for i in range(len(guess)):
         if guess[i] == secretNum[i]:
             # a correct digit is in the correct place.
             clues.append('Fermi')
         elif guess[i] in secretNum:
-            #A correct digit is in the incorrect place.
+            # A correct digit is in the incorrect place.
             clues.append('Pico')
-    
+    if len(clues) == 0:
+        return 'Bagels'  # There are no correct digits at all.
+    else:
+        # Sort the clues into alphabetical order so their original order
+        # doesn't give information away.
+        clues.sort()
+        # Make a single string from the list of string clues.
+        return ''.join(clues)
