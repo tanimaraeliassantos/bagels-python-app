@@ -23,3 +23,9 @@ def main():
 
            For example, if the secret number was 248 and your guess was 843,
            the clues would be Fermi Pico.'''.format(NUM_DIGITS))
+
+    while True: #Main game loop.
+        #This stores the secret number the player needs to guess:
+        secretNum = getSecretNum()
+        print('I have thought up a number')
+        print('You have {} guesses to get it.'.format(MAX_GUESSES))
