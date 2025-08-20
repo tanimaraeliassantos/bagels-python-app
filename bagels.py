@@ -8,7 +8,7 @@
 
 import random
 # importing access to random operations
-NUM_DIGITS = 3
+NUM_DIGITS = 1
 MAX_GUESSES = 10
 
 
@@ -42,6 +42,18 @@ def main():
             clues = getClues(guess, secretNum)
             print(clues)
             numGuesses += 1
+
+            if guess == secretNum:
+                break  # They're correct, so break out of this loop.
+            if numGuesses > MAX_GUESSES:
+                print('You ran out of guesses.')
+                print('The answer was {}.'.format(secretNum))
+
+        # Ask player if they want to play again.
+        print('So you want to play again? (yes or no)')
+        if not input('>').lower().startswith('y'):
+            break
+    print('Thanks for playing!')
 
 
 def getSecretNum():
@@ -78,3 +90,8 @@ def getClues(guess, secretNum):
         clues.sort()
         # Make a single string from the list of string clues.
         return ''.join(clues)
+
+
+# If the program is run (instead of imported), run the game:
+if __name__ == '__main__':
+    main()
