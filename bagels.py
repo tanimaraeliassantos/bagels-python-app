@@ -37,7 +37,7 @@ def main():
             # Keep looking until they enter a valid guess:
             while len(guess) != NUM_DIGITS or not guess.isdecimal():
                 print('Guess #{}: '.format(numGuesses))
-                guess = input('>')
+                guess = input('> ')
 
             clues = getClues(guess, secretNum)
             print(clues)
@@ -51,7 +51,7 @@ def main():
 
         # Ask player if they want to play again.
         print('So you want to play again? (yes or no)')
-        if not input('>').lower().startswith('y'):
+        if not input('> ').lower().startswith('y'):
             break
     print('Thanks for playing!')
 
@@ -64,7 +64,7 @@ def getSecretNum():
     secretNum = ''
     for i in range(NUM_DIGITS):
         secretNum += str(numbers[i])
-        return secretNum
+    return secretNum
 
 
 def getClues(guess, secretNum):
